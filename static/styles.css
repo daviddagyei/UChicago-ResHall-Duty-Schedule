@@ -1,0 +1,225 @@
+/* General body styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+}
+
+/* Header styling */
+h1 {
+    background-color: #800000; /* Maroon */
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid #990000;
+}
+
+/* Home page: Residence hall box styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul li {
+    padding: 10px;
+}
+
+ul li a {
+    display: block;
+    width: 250px;
+    height: 150px;
+    margin: 20px;
+    position: relative;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+ul li a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+ul li a .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 0, 0, 0.4); /* Semi-transparent maroon */
+    transition: background-color 0.3s ease;
+}
+
+ul li a:hover .overlay {
+    background-color: rgba(128, 0, 0, 0.85); /* Darker maroon on hover */
+}
+
+ul li a .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+ul li a:hover .text {
+    color: #fff;
+}
+
+/* Carousel container styling */
+.carousel-container {
+    width: 80%;
+    margin: 30px auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    width: 100%;
+    display: none;
+}
+
+.carousel-item h2 {
+    color: #800000;
+}
+
+.carousel-item p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Show the first carousel item by default */
+/* Show the first carousel item by default */
+.carousel-item:first-child {
+    display: block;
+}
+
+/* Carousel navigation buttons */
+.carousel-button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
+
+.carousel-button:hover {
+    background-color: #990000;
+}
+
+/* Schedule table styling */
+table {
+    width: 85%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    background-color: #800000; /* Maroon */
+    color: white;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 15px;
+}
+
+td {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+/* Alternating row colors for better readability */
+tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+td:hover {
+    background-color: #f2f2f2;
+}
+
+/* Highlighting the current row on hover */
+tr:hover td {
+    background-color: #ffe6e6; /* Light maroon background */
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+/* Link styling for back navigation */
+a {
+    color: #800000; /* Maroon */
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #990000;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #800000; /* Maroon */
+    color: white;
+    font-size: 1em;
+    border-top: 4px solid #990000;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}

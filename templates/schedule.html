@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hall_name }} Duty Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ hall_name }} Duty Schedule</h1>
+
+    <!-- Display who is on duty today -->
+    {% if today_duty %}
+    <div class="today-duty">
+        <h2>On Duty Today</h2>
+        <p><strong>Duty Person:</strong> {{ today_duty['Duty'] }}</p>
+        <p><strong>House:</strong> {{ today_duty['House'] }}</p>
+        <p><strong>Title:</strong> {{ today_duty['Title'] }}</p>
+        <p><strong>Cell Phone:</strong> {{ today_duty['Cell Phone'] }}</p>
+        <p><strong>Email:</strong> {{ today_duty['Email'] }}</p>
+    </div>
+    {% else %}
+    <p>No one on duty today.</p>
+    {% endif %}
+
+    <!-- Full schedule table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Duty Person</th>
+                <th>House</th>
+                <th>Title</th>
+                <th>Cell Phone</th>
+                <th>Room Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in schedule %}
+            <tr>
+                <td>{{ row['Date'] }}</td>
+                <td>{{ row['Duty'] }}</td>
+                <td>{{ row['House'] }}</td>
+                <td>{{ row['Title'] }}</td>
+                <td>{{ row['Cell Phone'] }}</td>
+                <td>{{ row['Room Phone'] }}</td>
+                <td>{{ row['Email'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Residence Halls</a>
+</body>
+</html>

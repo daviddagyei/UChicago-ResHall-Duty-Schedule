@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty Schedule - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Duty Schedule - Residence Halls</h1>
+
+    <!-- On Duty Today Header -->
+    <h2 class="duty-today-header">On Duty Today</h2>
+
+    <!-- Carousel for Today's Duty -->
+    <div class="carousel-container">
+        <button id="prev" class="carousel-button">❮</button>
+        <div class="carousel">
+            {% for hall, duty in today_schedules.items() %}
+                <div class="carousel-item">
+                    <h2>{{ hall }}</h2>
+                    {% if duty %}
+                    <p><strong>Duty Person:</strong> {{ duty['Duty'] }}</p>
+                    <p><strong>House:</strong> {{ duty['House'] }}</p>
+                    <p><strong>Title:</strong> {{ duty['Title'] }}</p>
+                    <p><strong>Cell Phone:</strong> {{ duty['Cell Phone'] }}</p>
+                    <p><strong>Email:</strong> {{ duty['Email'] }}</p>
+                    {% else %}
+                    <p>No one on duty today.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <button id="next" class="carousel-button">❯</button>
+    </div>
+
+    <p>Select a residence hall to view its full duty schedule:</p>
+    <ul>
+        <li>
+            <a href="/schedule/Campus North" style="background-image: url('{{ url_for('static', filename='images/campus_north.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">Campus North</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/Burton Judson" style="background-image: url('{{ url_for('static', filename='images/burton_judson.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">Burton Judson</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/I-House" style="background-image: url('{{ url_for('static', filename='images/i_house.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">I-House</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/Max P" style="background-image: url('{{ url_for('static', filename='images/max_p.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">Max P</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/RGGRC" style="background-image: url('{{ url_for('static', filename='images/rgg_rc.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">RGGRC</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/Snell-Hitchcock" style="background-image: url('{{ url_for('static', filename='images/snell_hitchcock.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">Snell-Hitchcock</div>
+            </a>
+        </li>
+        <li>
+            <a href="/schedule/Woodlawn" style="background-image: url('{{ url_for('static', filename='images/woodlawn.jpg') }}');">
+                <div class="overlay"></div>
+                <div class="text">Woodlawn</div>
+            </a>
+        </li>
+    </ul>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
