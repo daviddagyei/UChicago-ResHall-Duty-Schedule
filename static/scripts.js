@@ -1,28 +1,56 @@
 $(document).ready(function() {
-    let currentIndex = 0;
-    const items = $('.carousel-item');
-    const itemCount = items.length;
+    // Toggle between primary and secondary schedule
+    $('#show-primary').click(function() {
+        $('#primary-schedule').show();
+        $('#secondary-schedule').hide();
+        $('#show-primary').addClass('active');
+        $('#show-secondary').removeClass('active');
+    });
 
-    // Hide all items except the first
-    items.hide().eq(currentIndex).show();
+    $('#show-secondary').click(function() {
+        $('#primary-schedule').hide();
+        $('#secondary-schedule').show();
+        $('#show-secondary').addClass('active');
+        $('#show-primary').removeClass('active');
+    });
 
-    // Function to show the next item
-    function showNextItem() {
-        items.eq(currentIndex).hide();
-        currentIndex = (currentIndex + 1) % itemCount;
-        items.eq(currentIndex).fadeIn();
+    // Swiping functionality for primary schedule
+    let currentIndexPrimary = 0;
+    const primaryItems = $('#primary-schedule .carousel-item');
+    const primaryItemCount = primaryItems.length;
+
+    function showNextPrimary() {
+        primaryItems.eq(currentIndexPrimary).hide();
+        currentIndexPrimary = (currentIndexPrimary + 1) % primaryItemCount;
+        primaryItems.eq(currentIndexPrimary).fadeIn();
     }
 
-    // Function to show the previous item
-    function showPreviousItem() {
-        items.eq(currentIndex).hide();
-        currentIndex = (currentIndex - 1 + itemCount) % itemCount;
-        items.eq(currentIndex).fadeIn();
+    function showPreviousPrimary() {
+        primaryItems.eq(currentIndexPrimary).hide();
+        currentIndexPrimary = (currentIndexPrimary - 1 + primaryItemCount) % primaryItemCount;
+        primaryItems.eq(currentIndexPrimary).fadeIn();
     }
 
-    // Next button click
-    $('#next').click(showNextItem);
+    $('#next-primary').click(showNextPrimary);
+    $('#prev-primary').click(showPreviousPrimary);
 
-    // Previous button click
-    $('#prev').click(showPreviousItem);
+    // Swiping functionality for secondary schedule
+    let currentIndexSecondary = 0;
+    const secondaryItems = $('#secondary-schedule .carousel-item');
+    const secondaryItemCount = secondaryItems.length;
+
+    function showNextSecondary() {
+        secondaryItems.eq(currentIndexSecondary).hide();
+        currentIndexSecondary = (currentIndexSecondary + 1) % secondaryItemCount;
+        secondaryItems.eq(currentIndexSecondary).fadeIn();
+    }
+
+    function showPreviousSecondary() {
+        secondaryItems.eq(currentIndexSecondary).hide();
+        currentIndexSecondary = (currentIndexSecondary - 1 + secondaryItemCount) % secondaryItemCount;
+        secondaryItems.eq(currentIndexSecondary).fadeIn();
+    }
+
+    $('#next-secondary').click(showNextSecondary);
+    $('#prev-secondary').click(showPreviousSecondary);
 });

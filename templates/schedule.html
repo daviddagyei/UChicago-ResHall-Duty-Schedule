@@ -13,17 +13,19 @@
     {% if today_duty %}
     <div class="today-duty">
         <h2>On Duty Today</h2>
-        <p><strong>Duty Person:</strong> {{ today_duty['Duty'] }}</p>
+        <p><strong>Duty Person:</strong> {{ today_duty['Primary Duty'] }}</p>
         <p><strong>House:</strong> {{ today_duty['House'] }}</p>
         <p><strong>Title:</strong> {{ today_duty['Title'] }}</p>
         <p><strong>Cell Phone:</strong> {{ today_duty['Cell Phone'] }}</p>
         <p><strong>Email:</strong> {{ today_duty['Email'] }}</p>
     </div>
     {% else %}
-    <p>No one on duty today.</p>
+    <p>No one on duty today for {{ hall_name }}.</p>
     {% endif %}
 
     <!-- Full schedule table -->
+    <h2>Full Duty Schedule</h2>
+    {% if schedule %}
     <table>
         <thead>
             <tr>
@@ -40,7 +42,7 @@
             {% for row in schedule %}
             <tr>
                 <td>{{ row['Date'] }}</td>
-                <td>{{ row['Duty'] }}</td>
+                <td>{{ row['Primary Duty'] }}</td>
                 <td>{{ row['House'] }}</td>
                 <td>{{ row['Title'] }}</td>
                 <td>{{ row['Cell Phone'] }}</td>
@@ -50,6 +52,10 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>No schedule data available for {{ hall_name }}.</p>
+    {% endif %}
+
     <a href="/">Back to Residence Halls</a>
 </body>
 </html>
