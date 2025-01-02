@@ -1,13 +1,9 @@
-import os
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-
 from flask import Flask, render_template
 import pandas as pd
 from datetime import datetime
+import os
 
+# Initialize Flask app
 app = Flask(__name__)
 
 # Load the duty schedules for all halls
@@ -20,7 +16,6 @@ def load_duty_schedules():
 
     # Load schedules for available sheets only
     schedules = {sheet: pd.read_excel(file_path, sheet_name=sheet) for sheet in sheet_names if sheet in available_sheets}
-    
     return schedules
 
 # Function to get today's duty for each hall (with primary and secondary duty)
@@ -34,8 +29,8 @@ def get_today_duty(schedules):
         today_schedule = schedule[schedule['Date'] == today]
 
         if not today_schedule.empty:
-            today_primary_schedules[hall] = today_schedule.iloc[0].to_dict()  # Get primary duty
-            today_secondary_schedules[hall] = today_schedule.iloc[0].to_dict()  # Get secondary duty
+            today_primary_schedules[hall] = today_schedule.iloc[0].to_dict()
+            today_secondary_schedules[hall] = today_schedule.iloc[0].to_dict()
         else:
             # If no schedule is found, leave it blank
             today_primary_schedules[hall] = None
@@ -70,5 +65,7 @@ def show_schedule(hall_name):
     else:
         return render_template('schedule.html', hall_name=hall_name, schedule=[], today_duty=None)
 
+# Ensure app starts correctly in production
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
